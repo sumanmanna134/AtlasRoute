@@ -1,0 +1,71 @@
+spring:
+  application:
+    name: atlas-route
+  redis:
+    host: ${REDIS_HOST:localhost}
+    port: ${REDIS_PORT:6379}
+    password: ${REDIS_PASSWORD:}
+    timeout: 200ms
+    jedis:
+      pool:
+        max-active: 20
+        max-idle: 10
+        min-idle: 5
+        max-wait: 200ms
+    jackson:
+      serialization:
+        write-data-as-timestamps: false
+      deserialization:
+        fail-on-unknown-properties: false
+      default-property-inclusion: non_null
+server:
+  port: ${SERVER_PORT:8080}
+  compression:
+    enabled: true
+  http2:
+    enabled: true
+  shutdown: graceful
+
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: health,info,metrics,prometheus
+#  endpoint:
+#    health:
+#      show-details: when-authorized
+#      probes:
+#        enabled: true
+#  metrics:
+#    export:
+#      prometheus:
+#        enabled: true
+#    tags:
+#      application: ${spring.application.name}
+
+
+logging:
+  level:
+    root: INFO
+    com.routing.service: DEBUG
+    org.springframework.web: INFO
+
+  pattern:
+    console: "%clr(%d{yyyy-MM-dd HH:mm:ss}) %clr(%-5level) %clr([%thread]){yellow} %clr(%logger{36}){cyan} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
+  file:
+    name: logs/routing-service.log
+    max-size: 100MB
+    max-history: 30
+
+
+# Springdoc OpenAPI
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operations-sorter: method
+    tags-sorter: alpha
+
