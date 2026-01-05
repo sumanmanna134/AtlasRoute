@@ -31,6 +31,30 @@ public class DistanceCalculator {
         return EARTH_RADIUS_KM * c;
     }
 
+    /*
+     * @return Bearing in degree (0 to 360)
+     *
+     */
+    public static double bearing(Coordinate from, Coordinate to){
+        double fromLatRad = toRadians(from.latitude());
+        double toLatRad = toRadians(to.latitude());
+
+        double deltaLonRad = toRadians(to.longitude() - from.longitude());
+
+        double y = Math.sin(deltaLonRad) * Math.cos(toLatRad);
+        double x = Math.cos(fromLatRad) * Math.sin(toLatRad) - Math.sin(fromLatRad) * Math.cos(toLatRad) * Math.cos(deltaLonRad);
+
+        double bearingRad = Math.atan2(y,x);
+        return normalizeCompassBearing(bearingRad);
+    }
+
+    // Normalized compass Bearing
+    // No negative angles
+    private static  double normalizeCompassBearing(double bearingInRad){
+        double bearingInDeg = toDegree(bearingInRad);
+        return (bearingInDeg + 360)%360;
+    }
+
     private static double harvesineFormula(double deltaLatRad, double fromLatRad, double toLatRad, double deltaLonRad) {
         return square(Math.sin(deltaLatRad / 2))
                 + multiply(fromLatRad,toLatRad)
@@ -43,6 +67,10 @@ public class DistanceCalculator {
 
     private static double multiply(double fromLatRad, double toLatRad){
         return Math.cos(fromLatRad) * Math.cos(toLatRad);
+    }
+
+    private static double toDegree(double angleRad){
+        return Math.toDegrees(angleRad);
     }
 
     private static double deltaLongitudeRad(Coordinate from, Coordinate to){
