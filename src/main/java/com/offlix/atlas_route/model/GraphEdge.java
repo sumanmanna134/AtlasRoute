@@ -1,8 +1,13 @@
-package com.offlix.atlas_route.dto.graph;
+package com.offlix.atlas_route.model;
 
 import java.util.Objects;
 
-public record GraphEdge(GraphNode from, GraphNode to, double distanceKm, double baseWeight, double trafficMultiplier) {
+public record GraphEdge(
+        GraphNode from,
+        GraphNode to,
+        double distanceKm,
+        double baseWeight,
+        double trafficMultiplier) {
     public GraphEdge{
         Objects.requireNonNull(from, "From node cannot be null");
         Objects.requireNonNull(to, "To node cannot be null");

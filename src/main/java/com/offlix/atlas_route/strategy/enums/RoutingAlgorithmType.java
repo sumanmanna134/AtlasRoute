@@ -1,4 +1,4 @@
-package com.offlix.atlas_route.enums;
+package com.offlix.atlas_route.strategy.enums;
 /**
  * Supported routing algorithms.
  *

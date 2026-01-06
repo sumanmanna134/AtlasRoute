@@ -1,8 +1,8 @@
 package com.offlix.atlas_route.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.offlix.atlas_route.enums.MapProviderType;
-import com.offlix.atlas_route.enums.RoutingAlgorithmType;
+import com.offlix.atlas_route.strategy.enums.MapProviderType;
+import com.offlix.atlas_route.strategy.enums.RoutingAlgorithmType;
+import com.offlix.atlas_route.model.Coordinate;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 

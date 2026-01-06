@@ -8,4 +8,8 @@ public class NodeIdGenerator {
     public static String generate(){
         return String.format("node_%d",nodeIdCounter.incrementAndGet());
     }
+
+    public static void reset(){
+        nodeIdCounter.set(0);
+    }
 }

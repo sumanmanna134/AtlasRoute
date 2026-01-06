@@ -1,6 +1,6 @@
 package com.offlix.atlas_route.utils;
 
-import com.offlix.atlas_route.dto.Coordinate;
+import com.offlix.atlas_route.model.Coordinate;
 
 public class DistanceCalculator {
     private static final double EARTH_RADIUS_KM = 6371.0;

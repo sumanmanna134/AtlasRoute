@@ -1,12 +1,9 @@
-package com.offlix.atlas_route.dto.graph;
-
-import com.offlix.atlas_route.dto.Coordinate;
+package com.offlix.atlas_route.model;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
-
 public final class GraphNode {
     private final String id;
     private final Coordinate coordinate;

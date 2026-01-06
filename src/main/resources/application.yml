@@ -59,6 +59,9 @@ logging:
     max-size: 100MB
     max-history: 30
 
+altas:
+  base-url:
+
 
 # Springdoc OpenAPI
 springdoc:
