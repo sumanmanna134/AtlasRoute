@@ -47,7 +47,7 @@ public class DijkstraAlgorithm implements RoutingAlgorithm {
             nodesExplored++;
             if(reachedDestination(currentNode, endNode)){
                 List<GraphNode> path = constructPath(prevNodes, startNode, endNode);
-                double totalDistance = calculateDistance(path);
+                double totalDistance = calculateTotalDistance(path);
                 double totalWeight = distances.get(endNode.getId());
                 return RouteResult.builder()
                         .path(path)
@@ -89,7 +89,9 @@ public class DijkstraAlgorithm implements RoutingAlgorithm {
                 .computationTimeMs(timer.elapsedMillis()).build();
     }
 
-    private double calculateDistance(List<GraphNode> path){
+
+
+    private double calculateTotalDistance(List<GraphNode> path){
         double total = 0.0;
         for(int i=0;i<path.size()-1;i++){
             GraphNode source = path.get(i);

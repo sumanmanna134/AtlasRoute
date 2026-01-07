@@ -31,15 +31,17 @@ public class DijkstraAlgoTest {
 
             if(uId.equals(targetId)) break; // currentPoint == target so break;
 
+            double currentDistance = distanceMap.get(uId).doubleValue();
+
             for(Graph.Gedge gedge: current.currentNode().getEdges()){
-                String vId = gedge.getTo().getId();
-                double weight = gedge.getWeight();
-                double newDist = distanceMap.get(uId) + weight;
-                if(newDist < distanceMap.get(vId)){
-                    distanceMap.put(vId, newDist);
-                    prevNodes.put(vId, uId);
-                    pq.add(new NodeDistance(gedge.getTo(), newDist));
-                }
+                  Graph.GNode neighbor = gedge.getTo();
+                  double newDistance = currentDistance + gedge.getWeight();
+                  double oldDistance = distanceMap.getOrDefault(neighbor.getId(), Double.POSITIVE_INFINITY);
+                  if(newDistance < oldDistance){
+                      distanceMap.put(neighbor.getId(), newDistance);
+                      prevNodes.put(neighbor.getId(), uId);
+                      pq.offer(new NodeDistance(neighbor, newDistance));
+                  }
 
             }
 
